@@ -1,0 +1,260 @@
+INTRODUÇÃO
+-----------------
+Nessa seção iremos iniciar os estudos de front-end. Além disso, vamos aprender também um pouco sobre Javascript assíncrono, fetch API e testes.
+
+O QUE ESPERAR DE FRONTEND NA TRYBE?
+----------------------------------------
+  - Configuração de um ambiente FrontEnd (dia 1) e js assíncrono
+  - React
+      Fundamentos
+      Estado, Props e Ciclo de Vida
+      Formulários
+      Context API
+      Hooks
+  - Metodologias ágeis
+  - Testes automatizados com React Testing Library
+  - Gerenciamento de estado global (com bibliotecas externas ou API)
+
+
+O desenvolvimento Front-end é o responsável por toda a parte gráfica das aplicações. Não apenas aos elementos visuais, mas também pelas interações da pessoa usuária com a aplicação, seu layout, e até mesmo como ela irá se comportar em diferentes dispositivos, como telas de computadores, smartphones, tablets e até mesmo relógios inteligentes (smartwatches). Essa é uma das áreas mais dinâmicas da programação - ela está em constante atualização e desenvolvimento.
+
+DIA 01
+----------
+Você será capaz de:
+  Iniciar um Projeto com NPM;
+  Configurar pastas;
+  Iniciar controle de versionamento com Git;
+  Instalar Bibliotecas Externas;
+  Instalar um Bundler e Web Server (Vite);
+  Utilizar NPM, NPX e NPM Scripts;
+  Configurar ESLint no projeto;
+  Utilizar CSS no seu projeto.
+
+IMPORTÂNCIA
+--------------
+Desenvolvimento web é uma das áreas mais dinâmicas da programação. Com rápidas mudanças e novas funcionalidades constantemente, é importante que tenhamos um ambiente de desenvolvimento que permita que nossas aplicações escalem e consigam absorver essas novas tecnologias.
+
+
+====================================================================
+--------------------------------------------------------------------
+====================================================================
+
+
+CONFIGURANDO O AMBIENTE DE DESENVOLVIMENTO
+Para demonstrarmos os conceitos do dia de hoje, iremos criar uma aplicação que é um Gerador de Senhas Aleatórias. A ideia da aplicação é que, a cada vez que o botão é clicado, ela recomenda uma senha forte. Essa senha é gerada por uma biblioteca externa chamada NANOID.
+
+POR QUE CRIAR UM AMBIENTE DE DESENVOLVIMENTO WEB?
+------------------------------------------------------
+Até agora, para iniciarmos um novo projeto web, nós criamos tudo em uma página HTML - e adicionamos dentro dela tags scripts para trabalharmos com o Javascript. Quando começamos a criar aplicações mais complexas, é importante termos um ambiente devidamente configurado.
+
+Temos algumas vantagens com um ambiente de desenvolvimento configurado:
+
+     - Não precisamos nos preocupar com a ordem das tags scripts dentro do nosso HTML.
+     - Não precisamos nos preocupar com dependências entre diferentes arquivos.
+     - Conseguimos instalar e trabalhar com bibliotecas externas do NPM, sem necessidade de usarmos um CDN (Content Delivery Network).
+     - Ao não usarmos mais CDN, não precisamos nos preocupar com variáveis javascript poluindo o escopo global do nosso navegador.
+     - Conseguimos usar formas mais avançadas de CSS como pré-processadores (sass, por exemplo) bem como vários frameworks CSS (tais como tailwindCSS, bootstrap e outros).
+     - Conseguimos otimizar para performance (por exemplo, utilizando técnicas como tree shaking, bundling e minificação).
+
+
+(VÍDEO - CRIANDO E CONFIGURANDO O PROJETO)
+  CONFIGURANDO O AMBIENTE DE DESENVOLVIMENTO
+
+Para começar vamos criar um gerador de senhhas aleatórias, para introduzir os conceitos iniciais do ambiente de desenvolvimento e sua criação.
+(parte da explicação aqui e parte no código)
+É interessante criar sempre uma pasta -src- para colocar todo o código, em qualquer projeto. A outra pasta que se recomenda é uma pasta chamada -dist-(ou -build-), que é onde o código será compilado e ficará pronto para ir para a produção, o deploy.
+
+Para criar o pack.json vamos usar o npm init sem o -y, para observar as perguntas que ele faz durante a criação, como nome, versão, descrição, sistema de testes, etc, (o -y diz yes pra tudo). O package.json é um pacote para adicionar descrições e dependências do projeto, entre outras coisas.
+
+O arquivo html criado para o projeto é chamado de 'entry point' da aplicação.
+
+IMPLEMENTANDO A APLICAÇÃO 
+-------------------------------
+Nosso gerador de senhas precisa gerar caracteres aleatórios quando clicamos no botão. Poderíamos fazer esse algoritmo que gera caracteres aleatório ou, alternativamente, podemos utilizar uma BIBLIOTECA EXTERNA que já faz esse trabalho por nós.
+Existem algumas vantagens em optarmos por usar uma biblioteca externa. Além de economizarmos tempo e linha código, bibliotecas populares recebem constantes atualizações e bugfixes, deixando, via de regra, nosso código mais seguro e performático.
+Nesse projeto vamos utilizar a biblioteca nanoid, que é extremamente leve e consegue gerar uma sequência de caracteres aleatórios.
+
+(VÍDEO 'INSTALANDO BIBLIOTECAS EXTERNAS NA APLICAÇÃO)
+Algumas anotações aqui, outras no código.
+Abrir o projeto usando o navegador não permite acessso ao código js. Sendo assim, usar-se-á o live server(extensão) do vsc.
+
+A primeira biblioteca que se vai usar é a NANOID (buscar nanoid npm). Em seguida vamos instalar a biblioteca no  projeto (npm install nanoid). Ao fazer isso ele vai adicionar dependências dentro do package json. Essa é uma instalação local, feita porque não vai se usar CDN.
+
+Essa instalação vai gerar o 'node_modules' e o 'package-lock.json' também.
+
+- package-lock: ele serve para travar as versões de todas as dependências, para que quando ele vá para distribuição ou até mesmo para a máquina de outro colaborador, ele mantenha tudo igual. Não preciso me preocupar com ele agora. É sempre gerado e atualizado automaticamente pelo npm.
+
+- node_modules: guarda todas as dependências e subdependências do projeto, criando uma árvore de dependências cheia de ramificações. Como é um arquivo MUITO grande, em geral se usa o .gitignore, para que ele não 'suba' no controle de versão.
+
+O nanoid é "A tiny, secure, URL-friendly, unique string ID generator for JavaScripts", ou seja, um gerador de strings. No site encontram-se as instruções de importação e chamada da função, para colocar no js.
+
+======>>> só para que conste nos meus guardados, sem ser usando o play de execução, a forma de executar o código no node é digitando no terminal "node src/main.js" <<<======
+
+
+UTILIZANDO O VITE 
+--------------------
+Para o navegador conseguir acessar as bibliotecas que estão na node_modules podemos usar um bundler dev-server. Exitem diversas ferramentas que nos auxiliam nessa tarefa, como o Parcel, o Webpack e o Vite. Aqui iremos utilizar o Vite. 
+
+(VÍDEO - INSTALANDO UM BUNDLER NA APLICAÇÃO)
+Algumas anotações aqui e outras no código.
+O navegador não sabe como acessar as dependências e arquivos necessários para execução da 'biblioteca'(módulo) instalada dentro do node_modules. Para isso esse material deve ser compilado e colocado em um arquivo que o navegador já poderá ler. Quem faz isso é o 'BUNDLER'.
+
+Entre os bundlers encontrados no mercado, o 'vite' é muito utilizado por sua velocidade, por ter um Dev Server 'poderoso' e por usar ESM como padrão. (acesse o site)
+
+===============================================================================
+(COMEÇOU AULA AO VIVO NESTE PONTO)
+ - Para o vite ser executado para criar a build, a produção, o index.html deve estar na raiz do projeto pq é onde ele vai procurar o arquivo.
+
+ - ctrl+shift+p => pra recarregar a página e o lint carregar, depois de configurado. Com o ESLINT ele escreve logo o que é o problema. Senão, precisa digitar um comando pra ver qual é o erro, pq ele só vai ser marcado no código.
+
+ - instala primeiro o lint geral e depois o lint da trybe, o da trybe adiciona coisas.
+
+ - Existem as dependências de produção, que importam para a aplicação e as de dev, que só vão estar presentes durante o desenvolvimento. Isso tudo é mostrado no package.json.
+
+ - no figma pode-se 'desenhar' as telas das aplicações, pra ver como vai ficar. Protótipos são bons pra fazer primeiro, cada página do app, antes mesmo de começar a codar. (buscar um 'curso' de figma - o app é pago, permite 3 projetos gratuitos, não sei sses com limitações)
+===============================================================================
+
+O QUE O VITE VAI FAZER DE FATO?
+Vai compilar todo o código do node_modules que for necessário (que quisermos usar), e vai colocar em um arquivo que estará disponível e acessível para o navegador ler. Ele vai criar o 'ambiente de desenvolvimento'.
+
+Rodando no terminal o comando 'npx vite build' ele vai criar a pasta 'dist', que vai conter tudo que estiver em uso para que o navegador saiba o que deve ser mostrado (o que vai pra produção; vai ser uma compilação, vale a pena ver as modificações que os arquivos sofrem, mas em projetos pequenos pq é muita coisa xD).
+
+O blunder pega todas as dependências e o navegador consegue ler.
+
+
+====================================================================
+--------------------------------------------------------------------
+====================================================================
+
+
+NPX E NPM SCRIPTS 
+O NPX é um programa que é instalado quando instalamos o NPM (a partir da versão 5.2). Quando falamos de NPX, precisamos entender o que é NPM.
+
+(VÍDEO - NPM, NPX E NPM SCRIPTS)
+
+O NPM é o gerenciador de pacotes do node. Isso significa basicamente duas coisas: é o lugar onde a gente vai encontrar a maioria das bibliotecas js que se quer instalar no projeto, então ele é um 'hub'(um repositório de bibliotecas js), e é um programa que ajuda a gerenciar os pacotes instalados na máquina. Acessando o site 'https://www.npmjs.com/' é possível ver os pacotes e bibliotecas disponíveis e o que eles fazem.
+Como foi dito antes, a vantagem de utilizar uma biblioteca pronta é que, além de economizar linhas de código, elas estão sempre sendo atualizadas e corrigidas, o que torna o próprio código sempre atualizado.
+Se digitar 'npm' ele mostra uma lista de comandos dele pra ele mesmo e dependências do pacote do projeto específico.
+Outros gerenciadores de pacotes são o yarn e o pnpm (eles têmm algumas coisas que o npm não traz, mas na trybe sempre será usado o npm).
+
+O NPX é um pacote de código que foi criado e importamos para o projeto. Ele é executável, usando-se a linha de comando. Existem então dois tipos de pacote: de código e de executáveis. Quando se quer executar algum pacote que seja executável, pode-se utilizar o npx para isso. Como foi feito com o 'vite'.
+Instala-se ele no projeto usando 'npm install vite', e ele se torna uma dependência. Mas ele também é executável.
+O nanoid, por exemplo, é um pacote que se importa diretamente dentro do código, é um pacote de código. Já o 'vite' é um pacote que se executa na linha de comando, é um executável.
+O npx serve para executar comandos dentro de um pacote. Ele procura o executável dentro do node-node_modules.
+
+O NPM Scripts está presente no package.json sob a chave "scripts". Nesses scripts pode-se colocar coisas para rodar e chamar com 'npm run'. Nessa área é possível colocar - "dev": "vite --open", - que ele vai abrir automaticamente. Aí será "npm run dev".
+
+---------
+
+Para instalar um pacote na aplicação utilizando o NPM, basta executar o seguinte comando:
+npm install nomeDoPacote
+
+Ao executar o comando acima, você estará adicionando o pacote instalado às dependências do projeto. Você pode verificar todas as dependências do projeto na chave dependencies do arquivo package.json.
+
+Caso você acesse algum projeto que já possui alguma dependência, como, por exemplo, os projetos da Trybe, basta executar o comando abaixo para instalar todos os pacotes que estão definidos no arquivo package.json:
+npm install
+
+(é por isso que eles pedem pra gente rodar isso no começo de cada projeto. Pq no json já estão as dependências e elas serão instaladas automaticamente)
+
+
+Algumas bibliotecas javascript possuem executáveis, isto é, scripts que podem rodar com a linha de comando (CLIs ou command line interfaces).
+O NPX é um programa que executa (daí o “X” do NPX) esses scripts de forma mais simplificada. Ele funciona da seguinte forma:
+   -> Se a biblioteca está instalada no projeto (consta como uma dependência no arquivo package.json), o NPX executa o script dessa biblioteca;
+   -> Se a biblioteca não está instalada no projeto, ele instala de forma temporária a biblioteca e, após a instalação, executa o script.
+
+
+Além de ser um gerenciador de pacotes e além de executar scripts pelo NPX, o NPM também possui a funcionalidade de executar scripts customizados.
+Para isso, basta criarmos e nomearmos nossos scripts na chave scripts do arquivo package.json. Posteriormente, para rodar nossos scripts customizados, basta executar o comando 'npm run nome-do-script'.
+No gerenciador de senhas instala-se o 'vite' e depois adiciona-se aos scripts (no package.json)
+"dev": "vite --open"
+Dessa forma, ao executar o comando npm run dev temos nosso servidor rodando!
+
+
+====================================================================
+--------------------------------------------------------------------
+====================================================================
+
+
+CONFIGURANDO UM LINTER
+Já temos nossa aplicação plenamente funcional (o gerador de senhas) e com um ambiente de desenvolvimento rodando. Mas podemos deixá-la melhor. Vamos agora adicionar configurações para termos um linter e testes para maior qualidade do nosso código.
+
+ESLINT
+Um linter é uma ferramenta que nos ajuda a deixar nosso código limpo: ela aponta erros de estilo e formatação do código. Além disso, é essencial para a legibilidade do código - especialmente quando se trabalha em equipe (todas as pessoas são obrigadas a seguir as regras pré-definidas).
+O linter mais popular atualmente para javascript é o ESLint.
+
+Para configurar o ESLint em um projeto, basta seguir o passo a passo que irá aparecer após rodar o comando de inicialização. Você deverá escolher as definições que fizerem mais sentido para o seu projeto:
+
+--------- // configurando
+npm init @eslint/config
+
+Agora, você responderá algumas perguntas que apareceram no seu terminal para realizar as configurações iniciais do ESLint:
+
+-> Como você gostaria de usar o ESLint? Use as setas de navegação do seu teclado até selecionar a opção ''To check syntax, find problems, and enforce code style'' e aperte a tecla ENTER para confirmar.
+
+-> Que tipo de módulos seu projeto usa? Use as setas de navegação do seu teclado até selecionar a opção JavaScript modules (import/export) e aperte a tecla ENTER para confirmar.
+
+-> Qual framework seu projeto usa? Como ainda não estamos usando nenhum framework para nossa aplicação, use as setas de navegação do seu teclado até selecionar a opção None of these e aperte a tecla ENTER para confirmar.
+
+-> Seu projeto usa TypeScript? Como não estamos usando TypeScript, use as setas de navegação do seu teclado para selecionar a opção No e aperte a tecla ENTER para confirmar.
+
+-> Onde seu código é executado? Selecione opção Browser e aperte a tecla ENTER para confirmar.
+
+-> Como você gostaria de definir um estilo para o seu projeto? Use as setas de navegação do seu teclado para selecionar a opção Answer questions about your style e aperte a tecla ENTER para confirmar.
+
+-> Em qual formato você deseja que seu arquivo de configuração esteja? Use as setas de navegação do seu teclado para selecionar a opção JSON e aperte a tecla ENTER para confirmar.
+
+-> Que estilo de indentação você usa? Use as setas de navegação do seu teclado para selecionar a opção Spaces e aperte a tecla ENTER para confirmar.
+
+-> Quais aspas você usa para strings? Use as setas de navegação do seu teclado para selecionar a opção Single e aperte a tecla ENTER para confirmar.
+
+-> Qual Terminal você usa? Use as setas de navegação do seu teclado para selecionar a opção Unix e aperte a tecla ENTER para confirmar.
+
+-> Você precisa de ponto e vírgula? Use as setas de navegação do seu teclado para selecionar a opção Yes e aperte a tecla ENTER para confirmar.
+
+-> Deseja instalá-los agora? Use as setas de navegação do seu teclado para selecionar a opção Yes e aperte a tecla ENTER para confirmar.
+
+-> Qual gerenciador de pacotes você deseja usar? Use as setas de navegação do seu teclado para selecionar a opção npm e aperte a tecla ENTER para confirmar.
+
+-------
+
+O comando 
+npm i eslint-config-trybe-frontend
+instala o lint configurado da trybe. Tem de outras empresas tb, como o Google.
+
+Se for instalar o da Trybe junto com o configurado acima, entra-se no arquivo lint pra usar o comando
+"extends": " trybe-frontend "
+
+Para executar o eslint para checar seu código, basta executar o comando:
+npx eslint ./src
+
+Se preferir, podemos adicionar esse comando nos scripts do package.json:
+// package.json
+// ...
+  "scripts": {
+    "dev": "vite --open",
+    "lint": "eslint ./src"
+  },
+// ...
+
+Maravilha, a partir de agora, ao rodar o comando npm run lint, o eslint irá rodar no projeto.
+
+
+====================================================================
+--------------------------------------------------------------------
+====================================================================
+
+
+IMPLEMENTANDO O CSS
+Antes de iniciarmos a estilização de uma nova aplicação, vale a pena definirmos qual estratégia que iremos usar para implementação do nosso CSS. Existem várias opções, tais como:
+
+    CSS Puro
+    CSS Modules
+    SCSS (pré processador)
+    Frameworks (como Bootstrap ou TailwindCSS)
+
+Usando o Vite, é relativamente simples adotar quaisquer dessas estratégias acima, uma vez que ele já traz suporte para essas tecnologias.
+
+(VÍDEO - ESTILIZANDO A APLICAÇÃO)
+Algumas coisas aqui, outras no código.
+
+O vite permite que se importe o css para dentro do arquivo js.

@@ -1,0 +1,62 @@
+CONFIGURANDO UM LINTER
+Já temos nossa aplicação plenamente funcional (o gerador de senhas) e com um ambiente de desenvolvimento rodando. Mas podemos deixá-la melhor. Vamos agora adicionar configurações para termos um linter e testes para maior qualidade do nosso código.
+
+ESLINT
+Um linter é uma ferramenta que nos ajuda a deixar nosso código limpo: ela aponta erros de estilo e formatação do código. Além disso, é essencial para a legibilidade do código - especialmente quando se trabalha em equipe (todas as pessoas são obrigadas a seguir as regras pré-definidas).
+O linter mais popular atualmente para javascript é o ESLint.
+
+Para configurar o ESLint em um projeto, basta seguir o passo a passo que irá aparecer após rodar o comando de inicialização. Você deverá escolher as definições que fizerem mais sentido para o seu projeto:
+
+--------- // configurando
+npm init @eslint/config
+
+Agora, você responderá algumas perguntas que apareceram no seu terminal para realizar as configurações iniciais do ESLint:
+
+-> Como você gostaria de usar o ESLint? Use as setas de navegação do seu teclado até selecionar a opção ''To check syntax, find problems, and enforce code style'' e aperte a tecla ENTER para confirmar.
+
+-> Que tipo de módulos seu projeto usa? Use as setas de navegação do seu teclado até selecionar a opção JavaScript modules (import/export) e aperte a tecla ENTER para confirmar.
+
+-> Qual framework seu projeto usa? Como ainda não estamos usando nenhum framework para nossa aplicação, use as setas de navegação do seu teclado até selecionar a opção None of these e aperte a tecla ENTER para confirmar.
+
+-> Seu projeto usa TypeScript? Como não estamos usando TypeScript, use as setas de navegação do seu teclado para selecionar a opção No e aperte a tecla ENTER para confirmar.
+
+-> Onde seu código é executado? Selecione opção Browser e aperte a tecla ENTER para confirmar.
+
+-> Como você gostaria de definir um estilo para o seu projeto? Use as setas de navegação do seu teclado para selecionar a opção Answer questions about your style e aperte a tecla ENTER para confirmar.
+
+-> Em qual formato você deseja que seu arquivo de configuração esteja? Use as setas de navegação do seu teclado para selecionar a opção JSON e aperte a tecla ENTER para confirmar.
+
+-> Que estilo de indentação você usa? Use as setas de navegação do seu teclado para selecionar a opção Spaces e aperte a tecla ENTER para confirmar.
+
+-> Quais aspas você usa para strings? Use as setas de navegação do seu teclado para selecionar a opção Single e aperte a tecla ENTER para confirmar.
+
+-> Qual Terminal você usa? Use as setas de navegação do seu teclado para selecionar a opção Unix e aperte a tecla ENTER para confirmar.
+
+-> Você precisa de ponto e vírgula? Use as setas de navegação do seu teclado para selecionar a opção Yes e aperte a tecla ENTER para confirmar.
+
+-> Deseja instalá-los agora? Use as setas de navegação do seu teclado para selecionar a opção Yes e aperte a tecla ENTER para confirmar.
+
+-> Qual gerenciador de pacotes você deseja usar? Use as setas de navegação do seu teclado para selecionar a opção npm e aperte a tecla ENTER para confirmar.
+
+-------
+
+O comando 
+npm i eslint-config-trybe-frontend
+instala o lint configurado da trybe. Tem de outras empresas tb, como o Google.
+
+Se for instalar o da Trybe junto com o configurado acima, entra-se no arquivo lint pra usar o comando
+"extends": " trybe-frontend "
+
+Para executar o eslint para checar seu código, basta executar o comando:
+npx eslint ./src
+
+Se preferir, podemos adicionar esse comando nos scripts do package.json:
+// package.json
+// ...
+  "scripts": {
+    "dev": "vite --open",
+    "lint": "eslint ./src"
+  },
+// ...
+
+Maravilha, a partir de agora, ao rodar o comando npm run lint, o eslint irá rodar no projeto.
