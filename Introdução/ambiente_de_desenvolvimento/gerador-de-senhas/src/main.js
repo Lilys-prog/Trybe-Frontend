@@ -1,5 +1,7 @@
 import { nanoid } from 'nanoid';
+import 'clipboard-copy';
 import './style.css';
+import clipboardCopy from 'clipboard-copy';
 
 // o vite pega o css e 'injeta' no html automaticamente
 // isso é possível de fazer exatamente por causa do ambiente de desenvolvimento que sse estabeleceu
@@ -10,7 +12,10 @@ const dispPassEl = document.querySelector('h2');
 pssBtnEl.addEventListener('click', () => {
   const randPass = nanoid();
   dispPassEl.innerHTML = randPass;
+  clipboardCopy(randPass);
 });
+
+
 
 
 //console.log(nanoid());
