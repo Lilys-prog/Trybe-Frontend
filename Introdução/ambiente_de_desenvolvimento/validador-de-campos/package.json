@@ -1,0 +1,15 @@
+{
+  "name": "validador-de-campos",
+  "version": "1.0.0",
+  "description": "Exercício da Trybe para criar um validador de campos",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "LilyS",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^4.0.4"
+  }
+}
