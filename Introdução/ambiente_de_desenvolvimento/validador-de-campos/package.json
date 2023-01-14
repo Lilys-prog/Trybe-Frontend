@@ -4,12 +4,14 @@
   "description": "Exercício da Trybe para criar um validador de campos",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "vite --open"
   },
   "keywords": [],
   "author": "LilyS",
   "license": "ISC",
   "dependencies": {
+    "br-validator": "^4.1.0-script",
     "validator": "^13.7.0",
     "vite": "^4.0.4"
   }
