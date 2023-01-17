@@ -1,0 +1,16 @@
+{
+  "name": "pratica_casa_de_cambio",
+  "version": "1.0.0",
+  "description": "prática da trybe para promises e fetch",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "dev": "vite --open"
+  },
+  "author": "Lily Silva",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^4.0.4"
+  }
+}
