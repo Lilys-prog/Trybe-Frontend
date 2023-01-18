@@ -10,19 +10,23 @@
 
 <body>
   <section id="app-space">
-    <h1>Casa de Câmbio</h1>
-
-    <form>
+    <h1>Casa de <font color="green">Câmbio</font></h1>
+   
       <label for="coin" id="lbl">Digite a Moeda:</label>
-      <input type="text" name="coin" id="coin">
-      <input id="convBtn" type="button" value="Pesquisar">
-    </form>
+      <input type="text" name="coin" id="coin" placeholder="USD"/> 
 
-    <div id="conversion">...</div>
+    <button type="button" id="convBtn">Pesquisar</button>    
+      <!-- Usar a tag button é mais semântico que usar input-button. Colocar o type-button ajuda a não ficar recarregando rápido toda vez q clica -->
+
+    <section id="conversion">
+      <h2 id="titleCoins">Valor referente a 1 USD</h2>
+      <ul id="coins"></ul>
+    </section>
 
   </section>
 
   <script src="./src/main.js" type="module"></script>
+  <!-- colocar a tag de script no head é um problema pq o script executa antes da página renderizar. No entanto, o atributo 'defer', se colocado na tag de script, vai ordenar que o js só execute após o fim da renderização do html, ele carrega em paralelo e executa após a finalização do html -->
 </body>
 
 </html>
